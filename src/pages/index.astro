@@ -1,0 +1,60 @@
+---
+import "@fontsource-variable/raleway";
+import "@fontsource-variable/work-sans";
+
+import BaseHead from "../components/BaseHead.astro";
+import { Image } from "astro:assets";
+import { SITE } from "../config";
+import "../styles/main.scss";
+
+const navItems = [
+	{
+		title: "Components",
+		description: "Base Components, Dynamic Views and more.",
+		url: "/components/introduction",
+		img: "/Core.jpg",
+	},
+];
+---
+
+<html lang="en">
+	<head>
+		<BaseHead title={SITE.title} />
+	</head>
+	<body>
+		<div class="bg-slate-100 min-h-screen text-center">
+			<header
+				class="pt-12 pb-24 px-4 bg-gradient-to-br from-slate-700 to-black"
+			>
+				<div class="flex items-center justify-center p-4">
+				</div>
+				<h1 class="text-white text-4xl font-medium drop-shadow-sm">
+					{SITE.title}
+				</h1>
+				<p class="text-lg mt-4 text-slate-300">{SITE.description}</p>
+			</header>
+			<nav>
+				<ul class="flex gap-4 max-w-5xl mx-auto text-left mt-12 justify-center">
+					{
+						navItems.map(({ title, description, url, img }) => (
+							<a
+								href={url}
+								class="flex flex-col flex-none w-auto bg-white rounded-md hover:-translate-y-1 hover:shadow-lg transition-all items-center p-4"
+							>
+								<Image
+									loading="eager"
+									width="300"
+									height="300"
+									src={img}
+									alt={title}
+								/>
+								<h2 class="text-lg font-medium">{title}</h2>
+								<p class="text-slate-500">{description}</p>
+							</a>
+						))
+					}
+				</ul>
+			</nav>
+		</div>
+	</body>
+</html>

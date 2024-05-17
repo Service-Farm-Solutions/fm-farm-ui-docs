@@ -1,0 +1,41 @@
+---
+import "@fontsource-variable/raleway";
+import "@fontsource-variable/work-sans";
+
+import BaseHead from "../components/BaseHead.astro";
+// import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import LeftSidebar from "../components/LeftSidebar.astro";
+import PageContent from "../components/PageContent.astro";
+
+import "../styles/main.scss";
+
+const currentPage = new URL(Astro.request.url).pathname;
+const { content = {} } = Astro.props;
+---
+
+<html lang="en">
+	<head>
+		<BaseHead title={content.title} />
+	</head>
+	<body class="bg-slate-100">
+		<div class="sticky top-0 z-10 w-full">
+			<Header currentPage={currentPage} />
+		</div>
+		<div class="grid grid-cols-12">
+			<div class="col-span-3 sticky top-0 pt-12 h-screen flex">
+				<div class="ml-auto">
+					<LeftSidebar currentPage={currentPage} />
+				</div>
+			</div>
+			<main class="py-4 px-8 pb-32 col-span-6 overflow-auto">
+				<PageContent content={content}>
+					<slot />
+				</PageContent>
+			</main>
+			<div class="col-span-3 sticky top-0 h-screen flex">
+				<!-- <RightSidebar content={content} /> -->
+			</div>
+		</div>
+	</body>
+</html>
