@@ -2,7 +2,6 @@
   "name": "fm-farm-ui-docs",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://service-farm-solutions.github.io/fm-farm-ui-docs/",
   "type": "module",
   "scripts": {
     "dev": "vite --host",
