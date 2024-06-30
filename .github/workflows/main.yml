@@ -47,6 +47,8 @@ jobs:
         run: npm run build
       - name: Setup Pages
         uses: actions/configure-pages@v4
+        with: 
+          path: ${{ env.BUILD_PATH }}/dist
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
