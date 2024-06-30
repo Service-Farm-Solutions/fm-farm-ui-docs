@@ -37,6 +37,8 @@ jobs:
           cache: 'npm'
       - name: Install dependencies
         run: npm ci
+      - name: Env Def
+        run: echo 'Hi ${{ env.BASE_URL }}'
       - name: Build
         run: npm run build
       - name: Setup Pages
