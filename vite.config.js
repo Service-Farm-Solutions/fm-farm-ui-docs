@@ -5,5 +5,5 @@ import react from '@vitejs/plugin-react-swc'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [mdx({}), react()],
-  base: "/fm-farm-ui-docs/"
+  base: "https://service-farm-solutions.github.io/fm-farm-ui-docs/"
 })
