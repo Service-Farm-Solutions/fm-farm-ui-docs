@@ -34,6 +34,7 @@ function App() {
   })
   return (
     <NextUIProvider>
+      {import.meta.env.BASE_URL}
       <RouterProvider router={router} />
     </NextUIProvider>
   )

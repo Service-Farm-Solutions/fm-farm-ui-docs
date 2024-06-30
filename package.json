@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "./fm-farm-ui-docs/",
   "scripts": {
     "dev": "vite --host",
     "build": "vite build",
