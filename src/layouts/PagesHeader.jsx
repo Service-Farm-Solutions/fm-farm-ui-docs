@@ -1,11 +1,13 @@
+import { Link } from "react-router-dom";
+
 export default function PagesHeader() {
   return (
     <div className="sticky top-0 z-10 w-full">
       <header className="p-3 bg-slate-100 bg-opacity-80 backdrop-blur-md border-b text-slate-900">
         <nav title="Top Navigation" className="max-w-7xl mx-auto flex justify-between items-center px-4">
-          <div> <a className="text-lg font-medium" href="/">
+          <div> <Link className="text-lg font-medium" to="/">
             <h1> FM Farm - UI Docs </h1>
-          </a>
+          </Link>
           </div>
           <div className="flex gap-2">
             <a title="FM Farm" target="_blank" className="opacity-80 hover:opacity-100 hover:bg-blue-50 p-2 rounded-full transition-colors" href="https://service.farm/fm-farm/">
