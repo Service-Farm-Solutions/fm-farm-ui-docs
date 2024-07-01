@@ -11,6 +11,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@azure/msal-browser": "^3.17.0",
+    "@azure/msal-react": "^2.0.19",
     "@fontsource-variable/raleway": "^5.0.20",
     "@fontsource-variable/work-sans": "^5.0.19",
     "@mdx-js/rollup": "^3.0.1",

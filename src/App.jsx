@@ -1,4 +1,4 @@
-import { RouterProvider, createBrowserRouter } from 'react-router-dom'
+import { RouterProvider, createBrowserRouter, redirect } from 'react-router-dom'
 import ErrorPage from './Pages/ErrorPage'
 import Root from './Pages/Root'
 import { NextUIProvider } from "@nextui-org/react";
@@ -12,6 +12,14 @@ function App() {
       path: "/",
       element: <Root />,
       errorElement: <ErrorPage />,
+    },
+    {
+      path: "/redirect",
+      element: <Root />
+    },
+    {
+      path: "/logout",
+      loader: () => redirect("/")
     },
     ...(routes.pages.map(page => ({
       path: page.path,
