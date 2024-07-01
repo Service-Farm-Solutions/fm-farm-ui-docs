@@ -13,13 +13,13 @@ import { LogLevel } from "@azure/msal-browser";
 
 export const msalConfig = {
     auth: {
-        clientId: import.meta.env.CLIENT_ID,
-        authority: `https://login.microsoftonline.com/${import.meta.env.TENANT_ID}`,
-        redirectUri: import.meta.env.REDIRECT_URI,
+        clientId: import.meta.env.VITE_APP_CLIENT_ID,
+        authority: `https://login.microsoftonline.com/${import.meta.env.VITE_APP_TENANT_ID}`,
+        redirectUri: import.meta.env.VITE_APP_REDIRECT_URI,
     },
     cache: {
         cacheLocation: "sessionStorage", // This configures where your cache will be stored
-        storeAuthStateInCookie: false, // Set this to "true" if you are having issues on IE11 or Edge
+        storeAuthStateInCookie: true, // Set this to "true" if you are having issues on IE11 or Edge
     },
     system: {	
         loggerOptions: {	

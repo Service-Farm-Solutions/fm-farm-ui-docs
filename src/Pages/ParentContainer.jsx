@@ -1,4 +1,4 @@
-import { Button, Card, CardFooter, Image } from "@nextui-org/react";
+import { NavLink } from "react-router-dom";
 
 export default function ParentContainer() {
   return (
@@ -7,9 +7,9 @@ export default function ParentContainer() {
         <header class="p-3 bg-slate-100 bg-opacity-80 backdrop-blur-md border-b text-slate-900">
           <nav title="Top Navigation" class="max-w-7xl mx-auto flex justify-between items-center px-4">
             <div>
-              <a class="text-lg font-medium" href="/fm-farm-ui-docs">
+              <NavLink class="text-lg font-medium" href="/">
                 <h1> FM Farm - UI Docs </h1>
-              </a>
+              </NavLink>
             </div>
             <div class="flex gap-2">
               <a title="FM Farm" target="_blank" class="opacity-80 hover:opacity-100 hover:bg-blue-50 p-2 rounded-full transition-colors" href="https://service.farm/fm-farm/">

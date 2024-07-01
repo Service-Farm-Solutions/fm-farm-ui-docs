@@ -37,18 +37,6 @@ export default function Sidebar() {
                 ))}
               </ul>
             ))}
-            {/* <ul>
-              <h2 className="mt-4 font-semibold text-slate-700">Components</h2>
-              <li className="block py-2 px-6  my-1 transition-colors border-l border-black hover:border-slate-400 text-black hover:text-slate-900">
-                <a href="/fm-farm-ui-docs/components/introduction">Introduction</a>
-              </li>
-              <li className="block py-2 px-6  my-1 transition-colors border-l hover:border-slate-400 text-slate-500 hover:text-slate-900">
-                <a href="/fm-farm-ui-docs/components/table-view">Table View</a>
-              </li>
-              <li className="block py-2 px-6  my-1 transition-colors border-l hover:border-slate-400 text-slate-500 hover:text-slate-900">
-                <a href="/fm-farm-ui-docs/components/filters-view">Filters View</a>
-              </li>
-            </ul> */}
           </nav>
         </aside>
 
