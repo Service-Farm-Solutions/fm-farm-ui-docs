@@ -1,3 +1,4 @@
+import React from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 
 export default function Sidebar() {
@@ -17,6 +18,20 @@ export default function Sidebar() {
       {
         name: "Filters View",
         path: "/filters-view",
+      }
+    ]
+  },
+  {
+    name: "Modules",
+    path: "/modules",
+    children: [
+      {
+        name: "Introduction",
+        path: "/introduction",
+      },
+      {
+        name: "Job Report",
+        path: "/job-report",
       }
     ]
   }]

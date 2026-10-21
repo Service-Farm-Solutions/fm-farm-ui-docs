@@ -1,3 +1,4 @@
+import React from "react";
 import { Link, useRouteError } from "react-router-dom"
 import PagesHeader from "../layouts/PagesHeader";
 
@@ -7,9 +8,6 @@ export default function ErrorPage() {
 
   return (
     <div className="bg-slate-100 min-h-screen flex flex-col">
-      <div className="flex-none">
-        <PagesHeader />
-      </div>
       <div className="grid grid-cols-12 flex-1">
         <main className="py-4 px-8 pb-32 col-span-12 flex items-center justify-center flex-col">
           {error && error.status === 404 ? (

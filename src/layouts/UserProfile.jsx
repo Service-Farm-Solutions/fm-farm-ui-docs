@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react"
+
+import React,{ useEffect, useState } from "react"
 import { loginRequest } from "../auth/authConfig";
 import { useMsal } from "@azure/msal-react";
 import { callMsGraph } from "../auth/graph";
-import { CircularProgress } from "@nextui-org/react";
+import {CircularProgress} from "@heroui/progress";
 
 export default function UserProfile() {
 

@@ -1,3 +1,4 @@
+import React from "react";
 import { lazy, Suspense } from 'react';
 
 export function lazyLoadComponents(componentName) {
@@ -10,8 +11,18 @@ export function lazyLoadComponents(componentName) {
   );
 }
 
-export function lazyLoadMdx(mdxPath) {
+export function lazyLoadComponentMdx(mdxPath) {
   const LazyElement = lazy(() => import(`./Pages/Components/${mdxPath}.mdx`));
+
+  return (
+    <Suspense fallback="Loading...">
+      <LazyElement />
+    </Suspense>
+  );
+}
+
+export function lazyLoadModulesMdx(mdxPath) {
+  const LazyElement = lazy(() => import(`./Pages/Modules/${mdxPath}.mdx`));
 
   return (
     <Suspense fallback="Loading...">

@@ -1,3 +1,4 @@
+import React from "react";
 import { Link, redirect } from "react-router-dom";
 import { useIsAuthenticated, useMsal } from "@azure/msal-react";
 import UserProfile from "./UserProfile";

@@ -6,7 +6,7 @@ export default {
       path: "/components",
       name: "Components",
       layout: "ContainerLayout",
-      dir: "./Pages/Components",
+      dir: "Components",
       children: [
         {
           index: true,
@@ -24,6 +24,32 @@ export default {
           path: "filters-view",
           mdx: "FiltersView",
         },
+      ]      
+    },
+    {
+      path: "/modules",
+      name: "Modules",
+      layout: "ContainerLayout",
+      dir: "Modules",
+      children: [
+        {
+          index: true,
+          loader: () => redirect("/modules/introduction"),
+        },
+        {
+          path: "introduction",
+          mdx: "Introduction",
+          children: [
+            { 
+              path: "2.1.0",
+              mdx: "JobReportV2.1.0"
+            }
+          ]
+        },
+        {
+          path: "job-report",
+          mdx: "JobReport",
+        }
       ]      
     }
   ]

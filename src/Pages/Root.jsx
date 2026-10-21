@@ -1,3 +1,4 @@
+import React from "react";
 export default function Root() {
   return (
     <main className="bg-slate-100 min-h-screen text-center">
@@ -12,6 +13,11 @@ export default function Root() {
             <img src={`${import.meta.env.BASE_URL}Core.jpg`} loading="eager" alt="Components" width="300" height="300" decoding="async" />
             <h2 className="text-lg font-medium">Components</h2>
             <p className="text-slate-500">Base Components, Dynamic Views and more.</p>
+          </a>
+          <a href={`${import.meta.env.BASE_URL}modules/introduction`} className="flex flex-col flex-none w-auto bg-white rounded-md hover:-translate-y-1 hover:shadow-lg transition-all items-center p-4">
+            <img src={`${import.meta.env.BASE_URL}Core.jpg`} loading="eager" alt="Components" width="300" height="300" decoding="async" />
+            <h2 className="text-lg font-medium">Modules</h2>
+            <p className="text-slate-500">Modules Documentation for FM Farm.</p>
           </a>
         </ul>
       </nav>
