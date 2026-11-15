@@ -33,7 +33,7 @@ export default function UserProfile() {
   if (current.error) {
     const reconnectRequired = needsReconnect(current.error);
     return (
-      <div className="flex items-center gap-2 text-sm">
+      <div className="flex min-w-0 max-w-full flex-wrap items-center gap-2 text-sm">
         <span role="status">{reconnectRequired ? "Account reconnection required." : "Profile unavailable."}</span>
         <button className="underline" disabled={busy} onClick={async () => {
           if (reconnectRequired) {
@@ -46,5 +46,5 @@ export default function UserProfile() {
   }
   const name = [current.profile.givenName, current.profile.surname].filter(Boolean).join(" ") ||
     current.profile.displayName || account.name || account.username;
-  return <div className="flex gap-1 mr-2 items-center">Hi{name ? `, ${name}` : ""}!</div>;
+  return <div className="mr-2 min-w-0 max-w-full [overflow-wrap:anywhere]">Hi{name ? `, ${name}` : ""}!</div>;
 }

@@ -15,10 +15,10 @@ export default function ReleaseSelector() {
   }));
 
   return (
-    <label className="flex items-center gap-2 text-sm">
+    <label className="flex items-center gap-2 text-xs font-medium text-slate-500">
       Release
       <select
-        className="rounded border border-slate-300 bg-white px-2 py-1 text-slate-900"
+        className="max-w-40 rounded-lg border border-slate-200 bg-white px-2 py-2 text-sm font-medium text-slate-700"
         value={release.id}
         onChange={event => {
           const option = options.find(item => item.id === event.target.value);
