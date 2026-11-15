@@ -107,6 +107,7 @@ test("pinned older release links remain on the requested release", async t => {
   const router = await open(t, "/releases/24.0/modules/calendar");
   assert.equal(router.state.location.pathname, "/fm-farm-ui-docs/releases/24.0/modules/calendar");
   assert.equal(router.state.matches.at(-1).route.element, "24.0:Calendar");
+  assert.equal(router.state.matches.at(-1).route.handle.document.path, "modules/calendar");
 });
 
 test("nested document routes render independently of their parent content", async t => {

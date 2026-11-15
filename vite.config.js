@@ -4,6 +4,7 @@ import tailwindcss from '@tailwindcss/vite'
 import { readdirSync } from "node:fs";
 import releases from "./src/routes.js";
 import { validateReleases } from "./src/docs/releases.js";
+import remarkHeadings from "./src/docs/remarkHeadings.js";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -18,7 +19,7 @@ export default defineConfig({
         validateReleases(releases, files);
       },
     },
-    {enforce: 'pre', ...mdx()},
+    {enforce: 'pre', ...mdx({ remarkPlugins: [remarkHeadings] })},
     tailwindcss(),
   ],
   base: "/fm-farm-ui-docs/"

@@ -59,3 +59,13 @@ export function releaseTarget(release, documentPath) {
     ? releasePath(release.id, documentPath)
     : null;
 }
+
+export function documentNeighbors(release, documentPath) {
+  const documents = documentsFor(release.pages);
+  const index = documents.findIndex(document => document.path === documentPath);
+  if (index < 0) return { previous: null, next: null };
+  return {
+    previous: documents[index - 1] ?? null,
+    next: documents[index + 1] ?? null,
+  };
+}

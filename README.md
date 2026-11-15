@@ -60,6 +60,9 @@ The initial documentation snapshot is **25.0**.
 - The header selector lists only published releases and preserves the document,
   query string, and anchor when switching. A release without that document is
   disabled and labeled "page unavailable"; there is no fallback to another release's content.
+- Page headings have shareable links. The on-page table of contents lists
+  second- and third-level headings, and previous/next links follow the selected
+  release's manifest order, including across sections.
 - Unknown releases and documents return the application's not-found page.
 - Published documentation remains behind the existing Microsoft sign-in gate,
   except for the explicitly enabled local development bypass described above.
@@ -73,6 +76,9 @@ Its `pages.js` defines section names, URL paths, document titles, and exact
 case-sensitive MDX filenames. Routes and sidebar links use this same manifest.
 Nested entries can have `children`; each document is rendered as a complete page,
 so MDX files do not need an `Outlet`.
+Heading links are generated from the MDX heading source at build time; repeated
+headings receive numeric suffixes. Expressions contribute their source, not their
+rendered value, so changing a heading or its order can change its link.
 
 To prepare a release manually:
 

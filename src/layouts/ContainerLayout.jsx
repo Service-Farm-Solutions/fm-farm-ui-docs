@@ -1,14 +1,29 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation, useNavigationType } from "react-router-dom";
+import { useEffect, useRef } from "react";
 import PagesHeader from "./PagesHeader";
 import Sidebar from "./Sidebar";
 import { useAuthSession } from "../auth/session";
 import { bypassAuth } from "../auth/authMode";
+import DocumentNavigation from "./DocumentNavigation";
+import PageTableOfContents from "./PageTableOfContents";
 
 export default function ContainerLayout() {
   return bypassAuth ? <DocumentationLayout /> : <AuthenticatedLayout />;
 }
 
 function DocumentationLayout() {
+  const articleRef = useRef(null);
+  const mainRef = useRef(null);
+  const { pathname, hash, state } = useLocation();
+  const navigationType = useNavigationType();
+
+  useEffect(() => {
+    if (navigationType !== "POP" && !hash) {
+      window.scrollTo(0, 0);
+      if (state?.focusDocument) mainRef.current.focus({ preventScroll: true });
+    }
+  }, [pathname, hash, navigationType, state]);
+
   return (
     <div className="min-h-screen bg-white">
       <a href="#main-content" className="skip-link">Skip to content</a>
@@ -19,10 +34,18 @@ function DocumentationLayout() {
             <Sidebar />
           </div>
         </aside>
-        <main id="main-content" tabIndex="-1" className="min-w-0 flex-1 px-5 py-10 sm:px-8 sm:py-14 lg:px-12 xl:px-16">
-          <article className="mdx mx-auto max-w-3xl">
-            <Outlet />
-          </article>
+        <main ref={mainRef} id="main-content" tabIndex="-1" className="min-w-0 flex-1 px-5 py-10 sm:px-8 sm:py-14 lg:px-12 xl:px-16">
+          <div className="mx-auto max-w-6xl xl:grid xl:grid-cols-[minmax(0,1fr)_13rem] xl:items-start xl:gap-10">
+            <PageTableOfContents articleRef={articleRef} />
+            <div className="min-w-0 xl:col-start-1 xl:row-start-1">
+              <article ref={articleRef} className="mdx mx-auto max-w-3xl">
+                <Outlet />
+              </article>
+              <div className="mx-auto max-w-3xl">
+                <DocumentNavigation />
+              </div>
+            </div>
+          </div>
         </main>
       </div>
     </div>

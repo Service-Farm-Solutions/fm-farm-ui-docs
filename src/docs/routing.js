@@ -23,6 +23,7 @@ export function createDocumentationRoutes(config, layoutElement, renderDocument,
           ...documents.map(document => ({
             path: document.path,
             element: renderDocument(release, document),
+            handle: { document },
           })),
         ],
       };
