@@ -1,55 +1,29 @@
-import React from "react";
-import { RouterProvider, createBrowserRouter, redirect } from 'react-router-dom'
-import ErrorPage from './Pages/ErrorPage'
-import Root from './Pages/Root'
-// import { NextUIProvider } from "@nextui-org/react";
-import routes from './routes';
-import {  lazyLoadComponents, lazyLoadComponentMdx, lazyLoadModulesMdx } from './LayoutLoader'
-import {HeroUIProvider} from "@heroui/system";
+import { RouterProvider, createBrowserRouter, redirect } from "react-router-dom";
+import { lazy, Suspense } from "react";
+import { HeroUIProvider } from "@heroui/system";
+import ErrorPage from "./Pages/ErrorPage";
+import Root from "./Pages/Root";
+import releases from "./routes";
+import { loadDocument } from "./LayoutLoader";
+import { createDocumentationRoutes } from "./docs/routing";
 
-function App() {
+const ContainerLayout = lazy(() => import("./layouts/ContainerLayout"));
 
-  const allRoutes = [
-    {
-      path: "/",
-      element: <Root />,
-      errorElement: <ErrorPage />,
-    },
-    {
-      path: "/redirect",
-      element: <Root />
-    },
-    {
-      path: "/logout",
-      loader: () => redirect("/")
-    },
-    ...(routes.pages.map(page => ({
-      path: page.path,
-      element: lazyLoadComponents(page.layout),
-      errorElement: <ErrorPage />,
-      children: page.children.map(child => ({
-        path: child.path,
-        ...(child.index ?
-          {
-            index: true,
-            loader: child.loader
-          } : page.name === "Components" ? {
-            element:  lazyLoadComponentMdx(child.mdx),
-          }: page.name === "Modules" ? {
-            element: lazyLoadModulesMdx(child.mdx)
-          }: {}),
-          errorElement: <ErrorPage />
-      }))
-    }))),
-  ];
-  const router = createBrowserRouter(allRoutes, {
-    basename: import.meta.env.BASE_URL
-  })
+const router = createBrowserRouter([
+  { path: "/", element: <Root />, errorElement: <ErrorPage /> },
+  { path: "/redirect", element: <Root /> },
+  { path: "/logout", loader: () => redirect("/") },
+  ...createDocumentationRoutes(releases, <Suspense fallback="Loading..."><ContainerLayout /></Suspense>,
+    loadDocument, <ErrorPage />),
+  { path: "*", loader: () => { throw new Response("Page not found", { status: 404 }); }, errorElement: <ErrorPage /> },
+], {
+  basename: import.meta.env.BASE_URL,
+});
+
+export default function App() {
   return (
     <HeroUIProvider>
       <RouterProvider router={router} />
     </HeroUIProvider>
-  )
+  );
 }
-
-export default App

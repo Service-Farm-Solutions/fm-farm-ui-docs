@@ -1,23 +1,29 @@
-import React from "react";
-import { Link, redirect } from "react-router-dom";
-import { useIsAuthenticated, useMsal } from "@azure/msal-react";
+import { Link } from "react-router-dom";
+import { useAuthSession } from "../auth/session";
 import UserProfile from "./UserProfile";
+import ReleaseSelector from "./ReleaseSelector";
+import { bypassAuth } from "../auth/authMode";
+
+function AccountControls() {
+
+  const { account, busy, operation, error, signOut } = useAuthSession();
+
+  return (
+    <>
+      {account ? (
+        <>
+          <UserProfile />
+          <button disabled={busy} aria-busy={operation === "signOut"} className="rounded-full bg-slate-900 text-white px-4 py-1 text-sm" onClick={signOut}>
+            {operation === "signOut" ? "Signing out..." : "Sign Out"}
+          </button>
+        </>
+      ) : null}
+      {error ? <span role="alert" className="text-sm text-red-700">{error}</span> : null}
+    </>
+  );
+}
 
 export default function PagesHeader() {
-
-  const { instance, accounts } = useMsal();
-  const isAuthenticated = useIsAuthenticated();
-
-  const handleLogout = () => {
-    instance.logoutRedirect({
-      postLogoutRedirectUri: `${import.meta.env.BASE_URL}logout`,
-      account: accounts[0]
-    }).catch(e => {
-      console.log(e);
-      redirect("/")
-    });
-  }
-
   return (
     <div className="sticky top-0 z-10 w-full">
       <header className="p-3 bg-slate-100 bg-opacity-80 backdrop-blur-md border-b text-slate-900">
@@ -27,12 +33,12 @@ export default function PagesHeader() {
           </Link>
           </div>
           <div className="flex items-center gap-2">
-            {isAuthenticated ? (
-              <>
-                <UserProfile instance={instance} />
-                <button className=" rounded-full bg-slate-900 text-white px-4 py-1 text-sm" onClick={handleLogout}>Sign Out</button>
-              </>
-            ) : null}
+            <ReleaseSelector />
+            {bypassAuth ? (
+              <span className="rounded bg-amber-100 px-2 py-1 text-sm text-amber-900">
+                Local development - authentication bypassed
+              </span>
+            ) : <AccountControls />}
             <a title="FM Farm" target="_blank" className="opacity-80 ml-3 hover:opacity-100 hover:bg-blue-50 p-2 rounded-full transition-colors" href="https://service.farm/fm-farm/">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className="h-4">
                 <title>FM Farm</title>

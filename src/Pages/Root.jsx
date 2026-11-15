@@ -1,4 +1,3 @@
-import React from "react";
 export default function Root() {
   return (
     <main className="bg-slate-100 min-h-screen text-center">

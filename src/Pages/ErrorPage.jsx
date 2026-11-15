@@ -1,6 +1,4 @@
-import React from "react";
 import { Link, useRouteError } from "react-router-dom"
-import PagesHeader from "../layouts/PagesHeader";
 
 export default function ErrorPage() {
 
